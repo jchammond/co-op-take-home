@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { getHelloMessage } from "../actions/helloAction";
+import { findDuplicates } from "../actions/findDuplicatesAction";
 
 /*
- * Render individual records in a slightly more sensible form
+ * Fns to render the records in a slightly more readable form
  */
 function renderRecord(record) {
   return ( 
@@ -46,16 +46,13 @@ class Data extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-     getHelloMessage().then(dataObject => {
+     findDuplicates().then(dataObject => {
       if (this._isMounted)
         this.setState({
           duplicates: dataObject.duplicates,
           nonduplicates: dataObject.nonduplicates
         });
-     }).catch(() => {
-      if (this._isMounted)
-        this.setState();
-    });
+     }).catch(() => {});
   }
 
   componentWillUnmount() {
@@ -72,30 +69,5 @@ class Data extends Component {
     );
   }
 }
-
-// class Record extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = props;
-//   }
-
-//   render() {
-//     return (
-//       <div>
-//         <div>{this.state.first_name}</div>
-//         <div>{this.state.last_name}</div>
-//         <div>{this.state.company}</div>
-//         <div>{this.state.email}</div>
-//         <div>{this.state.address1}</div>
-//         <div>{this.state.address2}</div>
-//         <div>{this.state.city}</div>
-//         <div>{this.state.state}</div>
-//         <div>{this.state.state_long}</div>
-//         <div>{this.state.zip}</div>
-//         <div>{this.state.phone}</div>
-//       </div>
-//     );
-//   }
-// }
 
 export default Data;

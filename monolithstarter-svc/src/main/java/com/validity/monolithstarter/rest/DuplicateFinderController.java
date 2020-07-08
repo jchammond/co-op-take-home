@@ -15,7 +15,7 @@ public class DuplicateFinderController {
     @Inject
     private DuplicateFinderService duplicateFinderService;
 
-    @GetMapping("/hello")
+    @GetMapping("/finder")
     public JSONObject findDuplicates() {
         return duplicateFinderService.findDuplicates();
     }
